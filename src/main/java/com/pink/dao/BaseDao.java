@@ -7,10 +7,10 @@ import java.util.Properties;
 
 //操作数据库的公共类
 public class BaseDao {
-    private static String driver;
-    private static String url;
-    private static String username;
-    private static String password;
+    private static final String driver;
+    private static final String url;
+    private static final String username;
+    private static final String password;
 
     //静态代码块，类加载的时候就初始化
     static {
