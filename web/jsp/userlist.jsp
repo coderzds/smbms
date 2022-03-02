@@ -10,14 +10,14 @@
            		<form method="get" action="${pageContext.request.contextPath }/jsp/user.do">
 					<input name="method" value="query" class="input-text" type="hidden">
 					 <span>用户名：</span>
-					 <input name="queryname" class="input-text"	type="text" value="${queryUserName }">
-					 
+					 <input name="queryUserName" class="input-text"	type="text" value="${requestScope.queryUserName}">
+
 					 <span>用户角色：</span>
 					 <select name="queryUserRole">
-						<c:if test="${roleList != null }">
+						<c:if test="${requestScope.roleList != null }">
 						   <option value="0">--请选择--</option>
-						   <c:forEach var="role" items="${roleList}">
-						   		<option <c:if test="${role.id == queryUserRole }">selected="selected"</c:if>
+						   <c:forEach var="role" items="${requestScope.roleList}">
+						   		<option <c:if test="${role.id == requestScope.queryUserRole }">selected="selected"</c:if>
 						   		value="${role.id}">${role.roleName}</option>
 						   </c:forEach>
 						</c:if>
@@ -39,7 +39,7 @@
                     <th width="10%">用户角色</th>
                     <th width="30%">操作</th>
                 </tr>
-                   <c:forEach var="user" items="${userList }" varStatus="status">
+                   <c:forEach var="user" items="${requestScope.userList }" varStatus="status">
 					<tr>
 						<td>
 						<span>${user.userCode }</span>
@@ -63,18 +63,18 @@
 							<span>${user.userRoleName}</span>
 						</td>
 						<td>
-						<span><a class="viewUser" href="javascript:;" userid=${user.id } username=${user.userName }><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-						<span><a class="modifyUser" href="javascript:;" userid=${user.id } username=${user.userName }><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-						<span><a class="deleteUser" href="javascript:;" userid=${user.id } username=${user.userName }><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+						<span><a class="viewUser" href="javascript:" userid=${user.id } username=${user.userName }><img src="${pageContext.request.contextPath}/images/read.png" alt="查看" title="查看"/></a></span>
+						<span><a class="modifyUser" href="javascript:" userid=${user.id } username=${user.userName }><img src="${pageContext.request.contextPath}/images/xiugai.png" alt="修改" title="修改"/></a></span>
+						<span><a class="deleteUser" href="javascript:" userid=${user.id } username=${user.userName }><img src="${pageContext.request.contextPath}/images/schu.png" alt="删除" title="删除"/></a></span>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+			<input type="hidden" id="totalPageCount" value="${requestScope.totalPageCount}"/>
 		  	<c:import url="rollpage.jsp">
-	          	<c:param name="totalCount" value="${totalCount}"/>
-	          	<c:param name="currentPageNo" value="${currentPageNo}"/>
-	          	<c:param name="totalPageCount" value="${totalPageCount}"/>
+	          	<c:param name="totalCount" value="${requestScope.totalCount}"/>
+	          	<c:param name="currentPageNo" value="${requestScope.currentPageNo}"/>
+	          	<c:param name="totalPageCount" value="${requestScope.totalPageCount}"/>
           	</c:import>
         </div>
     </section>

@@ -18,7 +18,7 @@ public class SysFilter implements Filter {
         User user = (User) ((HttpServletRequest) req).getSession().getAttribute(Constant.USER_SESSION);
         if (user==null){
             //已经被移除，或者注销了，或者未登录
-            ((HttpServletResponse)resp).sendRedirect("/error.jsp");
+            ((HttpServletResponse)resp).sendRedirect(((HttpServletRequest) req).getContextPath()+"/error.jsp");
         }else {
             chain.doFilter(req,resp);
         }

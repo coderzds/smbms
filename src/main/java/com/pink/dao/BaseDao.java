@@ -49,7 +49,7 @@ public class BaseDao {
         preparedStatement = conn.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             //setObject，占位符，从1开始但是我们的数组是从0开始
-            preparedStatement.setObject(i+1,i);
+            preparedStatement.setObject(i+1,params[i]);
         }
         resultSet = preparedStatement.executeQuery();
         return resultSet;
@@ -60,7 +60,7 @@ public class BaseDao {
         preparedStatement = conn.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             //setObject，占位符，从1开始但是我们的数组是从0开始
-            preparedStatement.setObject(i+1,i);
+            preparedStatement.setObject(i+1,params[i]);
         }
 
         return preparedStatement.executeUpdate();

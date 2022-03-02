@@ -11,4 +11,10 @@ public class TestUserService {
         User admin = userService.login("admin", "1234567");
         System.out.println(admin.getUserPassword());
     }
+    @Test
+    public void testUser(){
+        UserServiceImpl userService = new UserServiceImpl();
+        int i = userService.getUserCount(null, 0);
+        System.out.println(i);
+    }
 }
